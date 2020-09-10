@@ -1,0 +1,21 @@
+{
+"totos":[
+    {
+        "id":0,
+        "status":"good"
+
+    },
+    {
+        "id":1,
+        "status":"good"
+
+    },
+    {
+        "id":2,
+        "status":"bad"
+
+    }
+
+]
+
+}
