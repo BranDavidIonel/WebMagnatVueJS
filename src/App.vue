@@ -4,8 +4,9 @@
     <HelloWorld msg="Bran David-Ionel App  Vue.js for  WebMagnat "/>
 
 
-  <ul>
-    
+  <input type="text" v-model="status" @keyup.enter="addStatus">
+
+  <ul>    
   <li v-for="todo of todos" :key="todo.id"> {{todo.service_status}}</li>  
   </ul>
   </div>
@@ -18,26 +19,39 @@ import axios from 'axios';
 //make a test with a local db.json
 //const baseUrl="http://localhost:3000/totos";
 //rest api from app WebMagnatRestApi
-const baseUrl="http://127.0.0.1:8000/api/statuses";
+const baseUrlGet="http://127.0.0.1:8000/api/statuses";
+const baseUrlPost="http://127.0.0.1:8000/api/status";
 export default {
   name: 'App',
   data(){
     return{
       todos:[{
-        service_status:''
-
-      }]
+      }],
+      status:''
     };
 
   },
   async created(){
     try{
       
-    const res=await axios.get(baseUrl);
+    const res=await axios.get(baseUrlGet);
     this.todos=res.data;
     }catch(e){
       console.error(e);
     }
+  },
+  //for post the data (good,fair..) from formular into url api
+  methods:{
+    async addStatus(){
+     try{
+      const res=await axios.post(baseUrlPost,{service_status:this.status});
+      this.todos=[...this.todos,res.data];
+      this.status='';
+      }catch(e){
+        console.error(e);
+      }
+    }
+
   },
   components: {
     HelloWorld

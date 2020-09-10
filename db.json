@@ -2,17 +2,17 @@
 "totos":[
     {
         "id":0,
-        "status":"good"
+        "service_status":"good"
 
     },
     {
         "id":1,
-        "status":"good"
+        "service_status":"good"
 
     },
     {
         "id":2,
-        "status":"bad"
+        "service_status":"bad"
 
     }
 
