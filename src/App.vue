@@ -23,10 +23,13 @@
 <h2>The results are:</h2>
   <ul>    
   <li v-for="todo of todos" :key="todo.id"> 
-    {{todo.service_status}}-{{todo.nrStatuses}}  results! 
+    {{todo.service_status}} -{{todo.percentage}}%- {{todo.nrStatuses}}  results! 
+    
+    
   </li>  
   </ul>
-
+  <br>
+  Total results: {{todos[0].nrSum}}
 
   </div>
   
