@@ -3,9 +3,20 @@
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Bran David-Ionel App  Vue.js for  WebMagnat "/>
 
-
-  <input type="text" v-model="status" @keyup.enter="addStatus">
-
+  <h2>How do you find our service?</h2>
+<div>
+<input type="radio" id="good" name="status" value="good" v-model="status">
+<label for="good">Good</label><br>
+<input type="radio" id="fair" name="status" value="fair" v-model="status">
+<label for="fair">Fair</label><br>
+<input type="radio" id="neutral" name="status" value="neutral" v-model="status">
+<label for="neutral">Neutral</label><br>
+<input type="radio" id="bad" name="status" value="bad" v-model="status">
+<label for="bad">Bad</label><br>
+</div>
+<h3>Other</h3>
+<input type="text" v-model="status" @keyup.enter="addStatus"><br>
+<button @click="addStatus">Submit</button>
   <ul>    
   <li v-for="todo of todos" :key="todo.id"> {{todo.service_status}}</li>  
   </ul>
