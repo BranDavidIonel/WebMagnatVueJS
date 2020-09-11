@@ -5,31 +5,46 @@
 
   <h2>How do you find our service?</h2>
 <div>
+<label for="good">A. Good</label>
 <input type="radio" id="good" name="status" value="good" v-model="status">
-<label for="good">Good</label><br>
+<br>
+<label for="fair">B. Fair</label>
 <input type="radio" id="fair" name="status" value="fair" v-model="status">
-<label for="fair">Fair</label><br>
+<br>
+<label for="neutral">C. Neutral</label>
 <input type="radio" id="neutral" name="status" value="neutral" v-model="status">
-<label for="neutral">Neutral</label><br>
+<br>
+<label for="bad">D. Bad</label>
 <input type="radio" id="bad" name="status" value="bad" v-model="status">
-<label for="bad">Bad</label><br>
+<br>
 </div>
 <!--
 <h3>Other</h3>
 <input type="text" v-model="status" @keyup.enter="addStatus"><br>
 -->
 <button @click="addStatus">Submit</button>
-
+<div v-if="check_submit">
 <h2>The results are:</h2>
   <ul>    
   <li v-for="todo of todos" :key="todo.id"> 
+    <div v-if="todo.service_status=='good'"> A.  
     {{todo.service_status}} -{{todo.percentage}}%- {{todo.nrStatuses}}  results! 
-    
-    
+    </div>
+    <div v-if="todo.service_status=='fair'"> B.  
+    {{todo.service_status}} -{{todo.percentage}}%- {{todo.nrStatuses}}  results! 
+    </div>
+    <div v-if="todo.service_status=='neutral'"> C.  
+    {{todo.service_status}} -{{todo.percentage}}%- {{todo.nrStatuses}}  results! 
+    </div>
+    <div v-if="todo.service_status=='bad'"> D.  
+    {{todo.service_status}} -{{todo.percentage}}%- {{todo.nrStatuses}}  results! 
+    </div>
   </li>  
   </ul>
   <br>
   Total results: {{todos[0].nrSum}}
+  </div>
+
 
   </div>
   
@@ -54,6 +69,7 @@ export default {
       todos:[{
       }],
       status:'',
+      //for make visible the other result or not 
       check_submit:false
     };
 
@@ -77,6 +93,8 @@ export default {
       const res2=await axios.get(baseUrlGroupedStatus);
       this.todos=res2.data;
       this.status='';
+      //make visible the other results
+      this.check_submit=true;
       }catch(e){
         console.error(e);
       }
@@ -86,6 +104,7 @@ export default {
   components: {
     HelloWorld
   }/*,
+  //I made a test
   mounted:function(){
     axios.get('http://127.0.0.1:8000/api/statuses')
     .then(response=>console.log(response));
@@ -97,11 +116,11 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family:  Arial;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  text-align: left;
+  color: #c21f1f;
+  margin-top: 20px;
 }
 </style>
